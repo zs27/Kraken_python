@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG,
-    filename="logs/kraken_bot.log",
+    filename= os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs', 'kraken_bot.log'),
     filemode="w",
     format="%(asctime)s %(message)s",
     datefmt="%m/%d/%Y %I:%M:%S %p"
@@ -20,6 +20,7 @@ def configure():
     load_dotenv()
 
 def main():
+
     configure()
 
     # Launch rest API manager
