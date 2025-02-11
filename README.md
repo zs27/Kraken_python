@@ -25,18 +25,20 @@ API_KEY='<kraken-public-key>'
 PRIVATE_KEY='<kraken-private-key>'
 ```
 
-3. run the file kraken_bot/kraken_bot.py
+3. Launch kraken_bot/kraken_bot.py
 
 ### Prerequisites
 
 #### Arch
 
-```cmd
+```bash
 sudo pacman -S python-dotenv python-websocket-client python-requests
 ```
 
 ##### Windows
 - Python 3.x
 - Install required dependencies:
-  ```bash
-  pip install -r requirements.txt
+
+```bash
+pip install -r requirements.txt
+```
