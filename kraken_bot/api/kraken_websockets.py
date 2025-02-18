@@ -21,6 +21,7 @@ class Kraken_Base_Client(threading.Thread):
         self.websocket_conn = ws
         self.is_connected.set()
 
+    # cloudflare 403 -> forbidden by cloudflare
     def on_error(self, ws, error):
         logger.critical(f"Websocket Error: {error}")
 
@@ -62,15 +63,14 @@ class Kraken_Base_Client(threading.Thread):
 
 class Kraken_Websocket_Manager:
     """Manages WebSocket connections in a separate thread"""
-    def __init__(self, public_api_key: str = None, private_api_key: str = None, data_queue: queue.Queue = None):
+    def __init__(self, public_api_key: str = None, private_api_key: str = None):
         self.public_api_key = public_api_key
         self.private_api_key = private_api_key
         self.public_url = "wss://ws.kraken.com/v2"
         self.private_url = "wss://ws-auth.kraken.com/v2"
         self.public_websocket = None
         self.private_websocket = None
-        # TODO: Implement Thread safe data transfer
-        self.data_queue = data_queue
+        self.data_queue = queue.Queue()
         # TODO: Keep track of subscriptions to remove
 
     def launch_sockets(self):
